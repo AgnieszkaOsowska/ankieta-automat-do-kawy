@@ -46,25 +46,51 @@ class Automat {
         this.amountMilk = 4;
         this.amountCoffee = 21;
     }
-    /*orderSmallCoffee(sugar, milk) {
-        switch(sugar, milk) {
-            case (sugar > this.amountSugar):
-            const messagePleace = document.getElementById('message');
-
-            break;
-            case (milk > this.amountMilk):
-            const messagePleace = document.getElementById('message');
-
-            break;
-            default:
-            let totalPrice = sugar * this.priceSugar + milk * this.priceMilk + this.priceSmallCoffee;
-            console.log(totalPrice);
+    orderSmallCoffee(milk, sugar) {
+        const pricePlace = document.getElementById('price');
+        const messagePlace = document.getElementById('message');
+        if(milk<this.amountMilk && sugar<this.amountSugar && this.amountCoffee>=6) {
+            let totalPrice = milk * this.priceMilk + sugar * this.priceSugar + this.priceSmallCoffee;
+            pricePlace.innerHTML = totalPrice;
             this.amountSugar -= sugar;
             this.amountMilk -= milk;
             this.amountCoffee -= 6;
         }
+        else {
+            if(milk>=this.amountMilk) {
+                messagePlace.innerHTML = 'Automat nie ma wystarczającej ilości mleka';
+            }
+            if(sugar>=this.amountSugar) {
+                messagePlace.innerHTML = 'Automat nie ma wystarczającej ilości cukru';
+            }
+            if(this.amountCoffee<6) {
+                messagePlace.innerHTML = 'Automat nie ma wystarczającej ilości kawy';
+            }
+        }
+    }
+    orderLargeCoffee(milk, sugar) {
+        const pricePlace = document.getElementById('price');
+        const messagePlace = document.getElementById('message');
+        if(milk<this.amountMilk && sugar<this.amountSugar && this.amountCoffee>=15) {
+            let totalPrice = milk * this.priceMilk + sugar * this.priceSugar + this.priceSmallCoffee;
+            pricePlace.innerHTML = totalPrice;
+            this.amountSugar -= sugar;
+            this.amountMilk -= milk;
+            this.amountCoffee -= 15;
+        }
+        else {
+            if(milk>=this.amountMilk) {
+                messagePlace.innerHTML = 'Automat nie ma wystarczającej ilości mleka';
+            }
+            if(sugar>=this.amountSugar) {
+                messagePlace.innerHTML = 'Automat nie ma wystarczającej ilości cukru';
+            }
+            if(this.amountCoffee<15) {
+                messagePlace.innerHTML = 'Automat nie ma wystarczającej ilości kawy';
+            }
+        }
     }
 }
 
-let automat1 = new Automat(6, 9, 2, 3);
-automat1.orderSmallCoffee(2, 2);*/
+let automat1 = new Automat(6, 9, 1, 2);
+automat1.orderLargeCoffee(3, 3);

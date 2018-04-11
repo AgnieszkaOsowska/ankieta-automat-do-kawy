@@ -66,22 +66,48 @@ var Automat = function () {
 
     _createClass(Automat, [{
         key: 'orderSmallCoffee',
-        value: function orderSmallCoffee(sugar, milk) {
-            var messagePleace = document.getElementById('message');
-            var pricePleace = document.getElementById('price');
-            switch (sugar, milk) {
-                case sugar > this.amountSugar:
-                    messagePleace.innerHTML = 'Automat nie ma wystarczającej ilości cukru';
-                    break;
-                case milk > this.amountMilk:
-                    messagePleace.innerHTML = 'Automat nie ma wystarczającej ilości mleka';
-                    break;
-                default:
-                    this.amountSugar -= sugar;
-                    this.amountMilk -= milk;
-                    this.amountCoffee -= 6;
-                    var totalPrice = sugar * this.priceSugar + milk * this.priceMilk + this.priceSmallCoffee;
-                    pricePlace.innerHTML = totalPrice;
+        value: function orderSmallCoffee(milk, sugar) {
+            var pricePlace = document.getElementById('price');
+            var messagePlace = document.getElementById('message');
+            if (milk < this.amountMilk && sugar < this.amountSugar && this.amountCoffee >= 6) {
+                var totalPrice = milk * this.priceMilk + sugar * this.priceSugar + this.priceSmallCoffee;
+                pricePlace.innerHTML = totalPrice;
+                this.amountSugar -= sugar;
+                this.amountMilk -= milk;
+                this.amountCoffee -= 6;
+            } else {
+                if (milk >= this.amountMilk) {
+                    messagePlace.innerHTML = 'Automat nie ma wystarczającej ilości mleka';
+                }
+                if (sugar >= this.amountSugar) {
+                    messagePlace.innerHTML = 'Automat nie ma wystarczającej ilości cukru';
+                }
+                if (this.amountCoffee < 6) {
+                    messagePlace.innerHTML = 'Automat nie ma wystarczającej ilości kawy';
+                }
+            }
+        }
+    }, {
+        key: 'orderLargeCoffee',
+        value: function orderLargeCoffee(milk, sugar) {
+            var pricePlace = document.getElementById('price');
+            var messagePlace = document.getElementById('message');
+            if (milk < this.amountMilk && sugar < this.amountSugar && this.amountCoffee >= 15) {
+                var totalPrice = milk * this.priceMilk + sugar * this.priceSugar + this.priceSmallCoffee;
+                pricePlace.innerHTML = totalPrice;
+                this.amountSugar -= sugar;
+                this.amountMilk -= milk;
+                this.amountCoffee -= 15;
+            } else {
+                if (milk >= this.amountMilk) {
+                    messagePlace.innerHTML = 'Automat nie ma wystarczającej ilości mleka';
+                }
+                if (sugar >= this.amountSugar) {
+                    messagePlace.innerHTML = 'Automat nie ma wystarczającej ilości cukru';
+                }
+                if (this.amountCoffee < 15) {
+                    messagePlace.innerHTML = 'Automat nie ma wystarczającej ilości kawy';
+                }
             }
         }
     }]);
@@ -89,6 +115,6 @@ var Automat = function () {
     return Automat;
 }();
 
-var automat1 = new Automat(6, 9, 2, 3);
-automat1.orderSmallCoffee(2, 2);
+var automat1 = new Automat(6, 9, 1, 2);
+automat1.orderLargeCoffee(3, 3);
 //# sourceMappingURL=app.js.map
