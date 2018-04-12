@@ -17,7 +17,7 @@ var Ankieta = function () {
     _createClass(Ankieta, [{
         key: 'tak',
         value: function tak() {
-            document.getElementById('tak').checked = true;
+            document.getElementById('tak').checked = true; // czy to jest potrzebne?
             var place = document.getElementById('odpowiedz');
             place.innerHTML = 'Lubisz kolor zielony';
         }
@@ -67,11 +67,10 @@ var Automat = function () {
     _createClass(Automat, [{
         key: 'orderSmallCoffee',
         value: function orderSmallCoffee(milk, sugar) {
-            var pricePlace = document.getElementById('price');
             var messagePlace = document.getElementById('message');
             if (milk < this.amountMilk && sugar < this.amountSugar && this.amountCoffee >= 6) {
                 var totalPrice = milk * this.priceMilk + sugar * this.priceSugar + this.priceSmallCoffee;
-                pricePlace.innerHTML = totalPrice;
+                messagePlace.innerHTML = totalPrice;
                 this.amountSugar -= sugar;
                 this.amountMilk -= milk;
                 this.amountCoffee -= 6;
@@ -90,11 +89,10 @@ var Automat = function () {
     }, {
         key: 'orderLargeCoffee',
         value: function orderLargeCoffee(milk, sugar) {
-            var pricePlace = document.getElementById('price');
             var messagePlace = document.getElementById('message');
             if (milk < this.amountMilk && sugar < this.amountSugar && this.amountCoffee >= 15) {
                 var totalPrice = milk * this.priceMilk + sugar * this.priceSugar + this.priceSmallCoffee;
-                pricePlace.innerHTML = totalPrice;
+                messagePlace.innerHTML = totalPrice;
                 this.amountSugar -= sugar;
                 this.amountMilk -= milk;
                 this.amountCoffee -= 15;
@@ -110,11 +108,56 @@ var Automat = function () {
                 }
             }
         }
+    }, {
+        key: 'addCoffee',
+        value: function addCoffee(coffee) {
+            this.amountCoffee += parseInt(coffee, 10);
+        }
+    }, {
+        key: 'addMilk',
+        value: function addMilk(_addMilk) {
+            this.amountMilk += parseInt(_addMilk, 10);
+        }
+    }, {
+        key: 'addSugar',
+        value: function addSugar(_addSugar) {
+            this.amountSugar += parseInt(_addSugar, 10);
+        }
     }]);
 
     return Automat;
 }();
 
 var automat1 = new Automat(6, 9, 1, 2);
-automat1.orderLargeCoffee(3, 3);
+
+var btnMakeOrder = document.getElementById('order');
+
+btnMakeOrder.addEventListener('click', function () {
+    var milk = document.getElementById('milkI').value;
+    var sugar = document.getElementById('sugarI').value;
+    if (document.getElementById('small').checked = true) {
+        automat1.orderSmallCoffee(milk, sugar);
+    } else {
+        automat1.orderLargeCoffee(milk, sugar);
+    }
+});
+
+var btnAddSugar = document.getElementsByClassName('add')[0];
+btnAddSugar.addEventListener('click', function () {
+    var addSugar = document.getElementById('addSugarI').value;
+    automat1.addSugar(addSugar);
+    console.log(automat1.amountSugar);
+});
+var btnAddMilk = document.getElementsByClassName('add')[1];
+btnAddMilk.addEventListener('click', function () {
+    var addMilk = document.getElementById('addMilkI').value;
+    automat1.addMilk(addMilk);
+    console.log(automat1.amountMilk);
+});
+var btnAddCoffee = document.getElementsByClassName('add')[2];
+btnAddCoffee.addEventListener('click', function () {
+    var addCoffee = document.getElementById('addCoffeeI').value;
+    automat1.addCoffee(addCoffee);
+    console.log(automat1.amountCoffee);
+});
 //# sourceMappingURL=app.js.map

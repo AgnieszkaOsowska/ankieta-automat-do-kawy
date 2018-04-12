@@ -6,7 +6,7 @@
          this.question = 'Czy lubisz kolor zielony?';
      }
      tak() {
-        document.getElementById('tak').checked = true;
+        document.getElementById('tak').checked = true;   // czy to jest potrzebne?
         const place = document.getElementById('odpowiedz');
         place.innerHTML = 'Lubisz kolor zielony';
      }
@@ -47,11 +47,10 @@ class Automat {
         this.amountCoffee = 21;
     }
     orderSmallCoffee(milk, sugar) {
-        const pricePlace = document.getElementById('price');
         const messagePlace = document.getElementById('message');
         if(milk<this.amountMilk && sugar<this.amountSugar && this.amountCoffee>=6) {
             let totalPrice = milk * this.priceMilk + sugar * this.priceSugar + this.priceSmallCoffee;
-            pricePlace.innerHTML = totalPrice;
+            messagePlace.innerHTML = totalPrice;
             this.amountSugar -= sugar;
             this.amountMilk -= milk;
             this.amountCoffee -= 6;
@@ -69,11 +68,10 @@ class Automat {
         }
     }
     orderLargeCoffee(milk, sugar) {
-        const pricePlace = document.getElementById('price');
         const messagePlace = document.getElementById('message');
         if(milk<this.amountMilk && sugar<this.amountSugar && this.amountCoffee>=15) {
             let totalPrice = milk * this.priceMilk + sugar * this.priceSugar + this.priceSmallCoffee;
-            pricePlace.innerHTML = totalPrice;
+            messagePlace.innerHTML = totalPrice;
             this.amountSugar -= sugar;
             this.amountMilk -= milk;
             this.amountCoffee -= 15;
@@ -90,7 +88,48 @@ class Automat {
             }
         }
     }
+    addCoffee(coffee) {
+        this.amountCoffee += parseInt(coffee, 10);
+    }
+    addMilk(addMilk) {
+        this.amountMilk += parseInt(addMilk, 10);
+    }
+    addSugar(addSugar) {
+        this.amountSugar += parseInt(addSugar, 10);
+    }
 }
 
 let automat1 = new Automat(6, 9, 1, 2);
-automat1.orderLargeCoffee(3, 3);
+
+const btnMakeOrder = document.getElementById('order');
+
+
+btnMakeOrder.addEventListener('click', ()=> {
+    let milk = document.getElementById('milkI').value;
+    let sugar = document.getElementById('sugarI').value;
+    if(document.getElementById('small').checked = true) {
+        automat1.orderSmallCoffee(milk, sugar);
+    }
+    else {
+        automat1.orderLargeCoffee(milk, sugar);
+    } 
+})
+
+const btnAddSugar = document.getElementsByClassName('add')[0];
+btnAddSugar.addEventListener('click', ()=> {
+    let addSugar = document.getElementById('addSugarI').value;
+    automat1.addSugar(addSugar);
+    console.log(automat1.amountSugar);
+})
+const btnAddMilk = document.getElementsByClassName('add')[1];
+btnAddMilk.addEventListener('click', ()=> {
+    let addMilk = document.getElementById('addMilkI').value;
+    automat1.addMilk(addMilk);
+    console.log(automat1.amountMilk);
+})
+const btnAddCoffee = document.getElementsByClassName('add')[2];
+btnAddCoffee.addEventListener('click', ()=> {
+    let addCoffee = document.getElementById('addCoffeeI').value;
+    automat1.addCoffee(addCoffee);
+    console.log(automat1.amountCoffee);
+})

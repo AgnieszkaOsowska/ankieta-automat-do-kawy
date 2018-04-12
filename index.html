@@ -13,9 +13,27 @@
             <label for="tak">Tak</label><input type="radio" name="answer" value="tak" id="tak"/>
             <label for="nie">Nie</label><input type="radio" name="answer" value="nie" id="nie"/>
             <p id="odpowiedz"></p>
+            <p>Wybierz dodatki: </p>
+            <label for="sugarI">Cukier: </label>
+            <input id="sugarI" name="sugar"/>
+            <label for="milkI">Mleko: </label>
+            <input id="milkI" name="milk"/><br/>
+            <p>Wybierz rozmiar kawy: </p>
+            <label for="small">Mała</label><input type="radio" name="size" value="small" id="small"/>
+            <label for="large">Duża</label><input type="radio" name="size" value="large" id="large"/>
+            <button id="order" name="order">Zamów</button>
             <p>Cena kawy: </p>
-            <p id="price"></p>
             <p id="message"></p>
+            <p>Dodaj składniki do automatu:</p>
+            <label for="addSugarI">Cukier: </label>
+            <input id="addSugarI" name="addSugar"/>
+            <button class="add" name="add">Dodaj</button>
+            <label for="addMilkI">Mleko: </label>
+            <input id="addMilkI" name="addMilk"/>
+            <button class="add" name="add">Dodaj</button>
+            <label for="addCoffeeI">Kawa: </label>
+            <input id="addCoffeeI" name="addCoffee"/>
+            <button class="add" name="add">Dodaj</button>
         </div>
          <script src="dist/js/app.js"></script>
     </body>
