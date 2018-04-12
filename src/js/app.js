@@ -70,7 +70,7 @@ class Automat {
     orderLargeCoffee(milk, sugar) {
         const messagePlace = document.getElementById('message');
         if(milk<this.amountMilk && sugar<this.amountSugar && this.amountCoffee>=15) {
-            let totalPrice = milk * this.priceMilk + sugar * this.priceSugar + this.priceSmallCoffee;
+            let totalPrice = milk * this.priceMilk + sugar * this.priceSugar + this.priceLargeCoffee;
             messagePlace.innerHTML = totalPrice;
             this.amountSugar -= sugar;
             this.amountMilk -= milk;
@@ -107,12 +107,12 @@ const btnMakeOrder = document.getElementById('order');
 btnMakeOrder.addEventListener('click', ()=> {
     let milk = document.getElementById('milkI').value;
     let sugar = document.getElementById('sugarI').value;
-    if(document.getElementById('small').checked = true) {
+    if(document.getElementById('small').checked) {
         automat1.orderSmallCoffee(milk, sugar);
     }
     else {
         automat1.orderLargeCoffee(milk, sugar);
-    } 
+    }
 })
 
 const btnAddSugar = document.getElementsByClassName('add')[0];
@@ -133,3 +133,5 @@ btnAddCoffee.addEventListener('click', ()=> {
     automat1.addCoffee(addCoffee);
     console.log(automat1.amountCoffee);
 })
+
+

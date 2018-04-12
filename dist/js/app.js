@@ -91,7 +91,7 @@ var Automat = function () {
         value: function orderLargeCoffee(milk, sugar) {
             var messagePlace = document.getElementById('message');
             if (milk < this.amountMilk && sugar < this.amountSugar && this.amountCoffee >= 15) {
-                var totalPrice = milk * this.priceMilk + sugar * this.priceSugar + this.priceSmallCoffee;
+                var totalPrice = milk * this.priceMilk + sugar * this.priceSugar + this.priceLargeCoffee;
                 messagePlace.innerHTML = totalPrice;
                 this.amountSugar -= sugar;
                 this.amountMilk -= milk;
@@ -135,7 +135,7 @@ var btnMakeOrder = document.getElementById('order');
 btnMakeOrder.addEventListener('click', function () {
     var milk = document.getElementById('milkI').value;
     var sugar = document.getElementById('sugarI').value;
-    if (document.getElementById('small').checked = true) {
+    if (document.getElementById('small').checked) {
         automat1.orderSmallCoffee(milk, sugar);
     } else {
         automat1.orderLargeCoffee(milk, sugar);
