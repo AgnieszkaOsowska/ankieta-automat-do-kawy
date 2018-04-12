@@ -111,7 +111,12 @@ btnMakeOrder.addEventListener('click', ()=> {
         automat1.orderSmallCoffee(milk, sugar);
     }
     else {
-        automat1.orderLargeCoffee(milk, sugar);
+        if(document.getElementById('large').checked) {
+            automat1.orderLargeCoffee(milk, sugar);
+        }
+        else {
+            message.innerHTML = 'Wybierz wielkość zamawianej kawy.'
+        }
     }
 })
 
